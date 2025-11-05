@@ -1,0 +1,21 @@
+import { Pool } from 'pg';
+
+const pool = new Pool({
+  user: 'neondb_owner',
+  host: 'ep-curly-sound-ahcrxe5b-pooler.c-3.us-east-1.aws.neon.tech',
+  database: 'neondb',
+  password: 'npg_WUmQdXwNZ2f6',
+  ssl: { rejectUnauthorized: false },
+});
+
+// Verificar conexión
+pool.on('connect', () => {
+  console.log('conexion exitosa a la base de datos');
+});
+
+pool.on('error', (err) => {
+  console.error('Error inesperado en el cliente inactivo', err);
+  process.exit(-1);
+});
+
+export default pool;
